@@ -10,7 +10,7 @@
 - Merging algorithms: odd-even merge/parallel odd-even merge
 - bitonic mergesort
 
-2. UI implementation:
+2. UI implementation (using matplotlib ?):
 - Choose the algorithm you want to use
 - Show stats like (1) time, (2) number of processes (would be better if it had core utilization too ?), (3) batch size (WARNING: batch size will be large)
 
