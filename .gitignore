@@ -1,0 +1,9 @@
+# Python
+__pycache__/
+
+# IDE
+.vscode/
+*.swp
+
+# OS
+.DS_Store
