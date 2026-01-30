@@ -2,7 +2,7 @@
 # Date: 13/1/2026
 # Implementation of Sequencial Bubble Sort Algorithm
 
-# ONLY DEMO, NOT FINISHED
+# XXX: ONLY DEMO, NOT FINISHED
 
 import multiprocessing as mp
 

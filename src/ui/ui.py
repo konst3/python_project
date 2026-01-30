@@ -1,8 +1,6 @@
 # Authors: Konstantinos Papalamprou, 
 # Date: 19/1/2026
 
-# TODO: Add results to the UI
-
 import utils.utils as utils
 
 from tkinter import ttk
@@ -31,7 +29,7 @@ class UI:
         self.f2 = tk.Frame(self.f1)
         self.f2.pack()
         vcmd = (self.f2.register(self.validate_spinbox), "%P", utils.seq_limit) # Register a new command to tkinter (NOTE: %P is the user key input)
-        self.s1 = tk.Spinbox(self.f2, from_=0, to=utils.seq_limit, width=7, repeatdelay=500, validate="key", validatecommand=vcmd)
+        self.s1 = tk.Spinbox(self.f2, from_=1, to=utils.seq_limit, width=7, repeatdelay=500, validate="key", validatecommand=vcmd)
         self.s1.delete(0, tk.END)
         self.s1.insert(0, "100")   # Set the default value to 10
         self.s1.pack(side="left", padx=5, pady=5)
@@ -49,12 +47,15 @@ class UI:
         self.cb1.set(self.algorithms[0]) # Set the default algorithm on the drop down menu
         self.cb1.pack(side="left", padx=5, pady=5)
         vcmd = (self.f4.register(self.validate_spinbox), "%P", utils.thread_limit) # Register a new command to tkinter (NOTE: %P is the user key input)
-        self.s2 = tk.Spinbox(self.f4, from_=0, to=utils.seq_limit, width=7, repeatdelay=500, validate="key", validatecommand=vcmd)
+        self.s2 = tk.Spinbox(self.f4, from_=1, to=utils.seq_limit, width=7, repeatdelay=500, validate="key", validatecommand=vcmd)
         self.s2.delete(0, tk.END)
         self.s2.insert(0, "1")   # Set the default value to 10
         self.s2.pack(side="left")
         self.b2 = tk.Button(self.f3, text="Sort", command=self.ui_run_sort)
         self.b2.pack(side="bottom", padx=5, pady=5)
+
+        # Results
+        # TODO: Add results to the UI
 
     # A method that constantly checks if the spinbox input is correct
     def validate_spinbox(self, value, limit):
@@ -62,7 +63,7 @@ class UI:
 
         try:
             value = int(value)
-            return (0 <= value <= int(limit))
+            return (1 <= value <= int(limit))
         except:
             return False
 
@@ -83,4 +84,5 @@ class UI:
         print(f"DEBUG: Sorting with {algorithm_choice} with threads: {thread_choice}")
         sorted_seq = utils.run_sort(utils.seq, algorithm_choice, thread_choice)
         #print(f"DEBUG: {sorted_seq}")
+        
         # TODO: Save to a file

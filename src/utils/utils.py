@@ -33,6 +33,7 @@ def run_sort(list, algo, thr=1):
     print(f"DEBUG: stop time: {t.t_stop}")
     return al
 
+# DEBUG
 if (__name__  == "__main__"):
     print("DEBUG: Utils module test")
     print("DEBUG: Available algorithms:")
