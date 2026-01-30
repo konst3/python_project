@@ -7,7 +7,7 @@
 import multiprocessing as mp
 
 class Bubble_sort:
-    def __init__(self, seq):
+    def __init__(self, seq,thr=1):
         self.seq = seq
 
         self.name = "Bubble Sort"
