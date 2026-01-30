@@ -40,12 +40,12 @@ if (__name__ == "__main__"):
     # print(sort.run())
     # print(f"Time: {t.dt():.6f}")
 
-    # Parallel Bubble sort
-    t.start()
-    parallel_sort = bubble_sorts.Parallel_Bubble_sort(seq.copy(), 100)
-    t.stop()
+    # # Parallel Bubble sort
+    # t.start()
+    # parallel_sort = bubble_sorts.Parallel_Bubble_sort(seq.copy(), 100)
+    # t.stop()
 
-    print(parallel_sort)
-    print(parallel_sort.run())
-    print(f"Time: {t.dt():.6f}")
+    # print(parallel_sort)
+    # print(parallel_sort.run())
+    # print(f"Time: {t.dt():.6f}")
 

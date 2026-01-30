@@ -33,4 +33,4 @@ python3 src/main.py
 https://www.dcc.fc.up.pt/~ricroc/aulas/1516/cp/apontamentos/slides_sorting.pdf
 https://matplotlib.org/stable/plot_types/basic/bar.html
 https://matplotlib.org/stable/api/animation_api.html
-https://www.geeksforgeeks.org/python/dropdown-menus-tkinter/
+https://www.geeksforgeeks.org/python/dropdown-menus-tkinter/ (ttk.Combobox implementation)
