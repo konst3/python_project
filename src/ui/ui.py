@@ -1,6 +1,8 @@
 # Authors: Konstantinos Papalamprou, 
 # Date: 19/1/2026
 
+# TODO: Add results to the UI
+
 import utils.utils as utils
 
 from tkinter import ttk
@@ -31,7 +33,7 @@ class UI:
         vcmd = (self.f2.register(self.validate_spinbox), "%P", utils.seq_limit) # Register a new command to tkinter (NOTE: %P is the user key input)
         self.s1 = tk.Spinbox(self.f2, from_=0, to=utils.seq_limit, width=7, repeatdelay=500, validate="key", validatecommand=vcmd)
         self.s1.delete(0, tk.END)
-        self.s1.insert(0, "10")   # Set the default value to 10
+        self.s1.insert(0, "100")   # Set the default value to 10
         self.s1.pack(side="left", padx=5, pady=5)
         self.b1 = tk.Button(self.f2, text="Generate", command=self.ui_generate_sequence)
         self.b1.pack()
@@ -39,13 +41,20 @@ class UI:
         # Choose a sorting algorithm
         self.f3 = tk.Frame(root)
         self.f3.pack(side="left")
-        self.l3 = tk.Label(self.f3, text="\nSelect a Sorting Algorithm")
+        self.l3 = tk.Label(self.f3, text="\nSelect a Sorting Algorithm & Number of Threads")
         self.l3.pack()
-        self.cb1 = ttk.Combobox(self.f3, values=self.algorithms, state="readonly", width=50) # NOTE: Use state="readonly" to disable typing in the dropbox
+        self.f4 = tk.Frame(self.f3)
+        self.f4.pack()
+        self.cb1 = ttk.Combobox(self.f4, values=self.algorithms, state="readonly", width=50) # NOTE: Use state="readonly" to disable typing in the dropbox
         self.cb1.set(self.algorithms[0]) # Set the default algorithm on the drop down menu
         self.cb1.pack(side="left", padx=5, pady=5)
+        vcmd = (self.f4.register(self.validate_spinbox), "%P", utils.thread_limit) # Register a new command to tkinter (NOTE: %P is the user key input)
+        self.s2 = tk.Spinbox(self.f4, from_=0, to=utils.seq_limit, width=7, repeatdelay=500, validate="key", validatecommand=vcmd)
+        self.s2.delete(0, tk.END)
+        self.s2.insert(0, "1")   # Set the default value to 10
+        self.s2.pack(side="left")
         self.b2 = tk.Button(self.f3, text="Sort", command=self.ui_run_sort)
-        self.b2.pack()
+        self.b2.pack(side="bottom", padx=5, pady=5)
 
     # A method that constantly checks if the spinbox input is correct
     def validate_spinbox(self, value, limit):
@@ -69,8 +78,9 @@ class UI:
 
     def ui_run_sort(self):
         algorithm_choice = self.cb1.get()
-        thread_choice = 1 # TODO: Add thread choice from tkinter input
+        thread_choice = int(self.s2.get())
 
-        print(f"DEBUG: Sorting with {algorithm_choice}")
+        print(f"DEBUG: Sorting with {algorithm_choice} with threads: {thread_choice}")
         sorted_seq = utils.run_sort(utils.seq, algorithm_choice, thread_choice)
-        print(f"DEBUG: {sorted_seq}")
+        #print(f"DEBUG: {sorted_seq}")
+        # TODO: Save to a file

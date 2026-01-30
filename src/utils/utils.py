@@ -20,6 +20,7 @@ algoList = {
 # Global list for the sequence
 seq = [1, 2]
 seq_limit = 10000 # Maximum size of list
+thread_limit = 100 # Maximum number of threads
 
 def generate_sequence(N, min_value=1, max_value=seq_limit):
     return random.sample(range(min_value, max_value+1), N)
