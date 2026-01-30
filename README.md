@@ -35,3 +35,4 @@ https://matplotlib.org/stable/plot_types/basic/bar.html
 https://matplotlib.org/stable/api/animation_api.html
 https://www.geeksforgeeks.org/python/dropdown-menus-tkinter/ (ttk.Combobox implementation)
 https://www.geeksforgeeks.org/python/python-tkinter-scale-widget/ (scale tkinter)
+https://docs.python.org/2/library/time.html#time.process_time_ns
