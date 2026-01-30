@@ -4,26 +4,11 @@
 # Libraries
 import tkinter as tk
 
-from utils.utils import generate_sequence
-from utils.timer import Timer
 import algorithms.bubble_sorts as bubble_sorts
 import ui.ui as ui
 
-from time import sleep
-
+# Main
 if (__name__ == "__main__"):
-    # NOTE: Make settings change from the UI
-    N = 1000 # size of the sequence
-    min_value = 1 # minimum value on the list
-    max_value = 100001 # maximum value on the list
-
-    # Generate a random sequence for the sorts
-    seq = generate_sequence(N, min_value, max_value)
-    print(seq)
-
-    t = Timer()
-
-    # Initialize the UI
     root = tk.Tk()
     my_app = ui.UI(root)
     root.mainloop()
