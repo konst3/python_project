@@ -2,48 +2,50 @@
 # Date: 13/1/2026
 
 # Libraries
-import matplotlib.pyplot as plt
-import numpy as np
+import tkinter as tk
 
-from algorithms.utils import generate_sequence
-import algorithms.bubble_sort as bubble_sort
+from utils.utils import generate_sequence
+from utils.timer import Timer
+import algorithms.bubble_sorts as bubble_sorts
+import ui.ui as ui
 
-# NOTE: Make settings change from the UI
-N = 8 # size of the sequence
-min_value = 1 # minimum value on the list
-max_value = 10 # maximum value on the list
+from time import sleep
 
-# Bubble Sort test
-a = generate_sequence(N, min_value, max_value)
-print(a)
+if (__name__ == "__main__"):
+    # NOTE: Make settings change from the UI
+    N = 1000 # size of the sequence
+    min_value = 1 # minimum value on the list
+    max_value = 100001 # maximum value on the list
 
-s = bubble_sort.Bubble_sort(a)
-print(s)
-print(s.sort())
+    # Generate a random sequence for the sorts
+    seq = generate_sequence(N, min_value, max_value)
+    print(seq)
 
-# UI test
-# x = 0.5 + np.arange(N)
-# y = a
+    t = Timer()
 
-## plt.style.use('_mpl-gallery')
+    # Initialize the UI
+    root = tk.Tk()
+    my_app = ui.UI(root)
+    root.mainloop()
 
-# fig, ax = plt.subplots()
-# fig.patch.set_facecolor("black")
-# ax.bar(x, y, width=1, color="white", edgecolor="white", linewidth=0.7)
-# ax.set(xlim=(0, N), xticks=np.arange(1, N+1),
-#        ylim=(0, max_value+1), yticks=np.arange(0, max_value+1))
-# ax.set_facecolor('black')          # Axes background
-# ax.set_title(s, color="white", fontsize=14)
+    # 1
+    # Bubble sort
+    # NOTE: Use a copy of the list so that python does not have the same
+    #       memory allocation for a the input and the output
+    # t.start()
+    # sort = bubble_sorts.Bubble_sort(seq.copy())
+    # t.stop()
 
-# ax.grid(True, color='gray', linestyle='-', linewidth=0.5, alpha=0.5)
+    # print(sort)
+    # print(sort.run())
+    # print(f"Time: {t.dt():.6f}")
 
-# # Change axis colors to make them visible
-# ax.spines['bottom'].set_color('white')
-# ax.spines['top'].set_color('white')
-# ax.spines['left'].set_color('white')
-# ax.spines['right'].set_color('white')
-# ax.tick_params(colors='white')      # Tick marks
-# ax.xaxis.label.set_color('white')   # X-axis label
-# ax.yaxis.label.set_color('white')   # Y-axis label
+    # Parallel Bubble sort
+    t.start()
+    parallel_sort = bubble_sorts.Parallel_Bubble_sort(seq.copy(), 100)
+    t.stop()
 
-# plt.show()
+    print(parallel_sort)
+    print(parallel_sort.run())
+    print(f"Time: {t.dt():.6f}")
+
