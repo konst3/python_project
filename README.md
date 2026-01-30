@@ -31,8 +31,10 @@ python3 src/main.py
 
 ## Links
 https://www.dcc.fc.up.pt/~ricroc/aulas/1516/cp/apontamentos/slides_sorting.pdf
-https://matplotlib.org/stable/plot_types/basic/bar.html
-https://matplotlib.org/stable/api/animation_api.html
-https://www.geeksforgeeks.org/python/dropdown-menus-tkinter/ (ttk.Combobox implementation)
-https://www.geeksforgeeks.org/python/python-tkinter-scale-widget/ (scale tkinter)
+
+Algorithms
 https://docs.python.org/2/library/time.html#time.process_time_ns
+
+UI
+ttk.Combobox https://www.geeksforgeeks.org/python/dropdown-menus-tkinter/
+tk.Spinbox

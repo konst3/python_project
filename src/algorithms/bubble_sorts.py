@@ -6,6 +6,7 @@
 
 import multiprocessing as mp
 
+# Bubble Sort
 class Bubble_sort:
     def __init__(self, seq, thr=1):
         self.seq = seq
@@ -33,6 +34,7 @@ class Bubble_sort:
     def run(self):
         return f"Result: {self.sort(self.seq)}"
 
+# Parallel Bubble Sort
 class Parallel_Bubble_sort(Bubble_sort):
     def __init__(self, seq, ps_n):
         self.seq = seq

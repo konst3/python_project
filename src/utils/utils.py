@@ -11,14 +11,14 @@ t = timer.Timer()
 algoList = {
     "Bubble Sort": bubble_sorts.Bubble_sort,
     "Parallel Bubble Sort": bubble_sorts.Parallel_Bubble_sort,
-    "Mergesort": mergesort.MergeSort,
-    "Bitonic Mergesort": bitonic_mergesort.BitonicMergeSort,
-    "Odd-Even Merge Sort": odd_even_merge_sort.OddEvenMergeSort,
     "Odd-Even Transposition Sort": odd_even_transposition_sort.OddEvenTranspositionSort,
-    "Quicksort": quicksort.QuickSort
+    "Mergesort": mergesort.MergeSort,
+    "Quicksort": quicksort.QuickSort,
+    "Odd-Even Merge Sort": odd_even_merge_sort.OddEvenMergeSort,
+    "Bitonic Mergesort": bitonic_mergesort.BitonicMergeSort
 }
-# Global list for the sequence
-seq = [1, 2]
+
+seq = [1, 2] # Global list for the sequence
 seq_limit = 10000 # Maximum size of list
 thread_limit = 100 # Maximum number of threads
 
@@ -26,6 +26,8 @@ def generate_sequence(N, min_value=1, max_value=seq_limit):
     return random.sample(range(min_value, max_value+1), N)
 
 def run_sort(list, algo, thr=1):
+    # TODO: Show algorithm complexity (self.complexity variable already on class)
+
     t.start()
     print(f"DEBUG: start time: {t.t_start}")
     al = algoList[algo](list,thr).run()

@@ -14,11 +14,7 @@ class UI:
         # root.geometry("600x300")
         root.resizable(False, False)
 
-        # Algorithms
-        # 0: Bubble Sort
-        # 1: Parallel Bubble Sort
-
-        self.algorithms = list(utils.algoList.keys()) # Grab the algoList 
+        self.algorithms = list(utils.algoList.keys()) # Grab the algorithm names from the algoList keys
 
         # Generate the sequence
         # TODO: Add a sequence from a file (csv ?)
@@ -30,8 +26,8 @@ class UI:
         self.f2.pack()
         vcmd = (self.f2.register(self.validate_spinbox), "%P", utils.seq_limit) # Register a new command to tkinter (NOTE: %P is the user key input)
         self.s1 = tk.Spinbox(self.f2, from_=1, to=utils.seq_limit, width=7, repeatdelay=500, validate="key", validatecommand=vcmd)
-        self.s1.delete(0, tk.END)
-        self.s1.insert(0, "100")   # Set the default value to 10
+        self.s1.delete(0, tk.END) # Clear the default of the Spinbox
+        self.s1.insert(0, "100") # Set the new default value of the Spin box to 1
         self.s1.pack(side="left", padx=5, pady=5)
         self.b1 = tk.Button(self.f2, text="Generate", command=self.ui_generate_sequence)
         self.b1.pack()
@@ -46,10 +42,11 @@ class UI:
         self.cb1 = ttk.Combobox(self.f4, values=self.algorithms, state="readonly", width=50) # NOTE: Use state="readonly" to disable typing in the dropbox
         self.cb1.set(self.algorithms[0]) # Set the default algorithm on the drop down menu
         self.cb1.pack(side="left", padx=5, pady=5)
+        # TODO: Make thread number unusable for single threaded sorts (ex. Bubble Sort)
         vcmd = (self.f4.register(self.validate_spinbox), "%P", utils.thread_limit) # Register a new command to tkinter (NOTE: %P is the user key input)
         self.s2 = tk.Spinbox(self.f4, from_=1, to=utils.seq_limit, width=7, repeatdelay=500, validate="key", validatecommand=vcmd)
-        self.s2.delete(0, tk.END)
-        self.s2.insert(0, "1")   # Set the default value to 10
+        self.s2.delete(0, tk.END) # Clear the default of the Spinbox
+        self.s2.insert(0, "1") # Set the new default value of the Spin box to 1
         self.s2.pack(side="left")
         self.b2 = tk.Button(self.f3, text="Sort", command=self.ui_run_sort)
         self.b2.pack(side="bottom", padx=5, pady=5)
@@ -78,11 +75,14 @@ class UI:
         print(f"DEBUG: Generated Sequence: {utils.seq}")
 
     def ui_run_sort(self):
+        print(f"DEBUG: Starting with: {utils.seq}")
+
         algorithm_choice = self.cb1.get()
         thread_choice = int(self.s2.get())
 
-        print(f"DEBUG: Sorting with {algorithm_choice} with threads: {thread_choice}")
-        sorted_seq = utils.run_sort(utils.seq, algorithm_choice, thread_choice)
-        #print(f"DEBUG: {sorted_seq}")
+        print(f"DEBUG: User choosed {algorithm_choice} with threads: {thread_choice}")
+        sorted_seq = utils.run_sort(utils.seq.copy(), algorithm_choice, thread_choice) # NOTE: Use a copy of the list so that the main list does not get overwritten
+
+        print(f"DEBUG: {sorted_seq}")
         
         # TODO: Save to a file
