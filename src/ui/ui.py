@@ -18,60 +18,59 @@ class UI:
         # 0: Bubble Sort
         # 1: Parallel Bubble Sort
 
-        self.algorithm_choice = 0
-        self.algorithms = ["Bubble Sort/Parallel Bubble Sort", "Odd-Even Transposition Sort", "Mergesort/Parallel Mergesort",
-                           "Quicksort and Partitioning schemes", "Merging Algorithms: Odd-Even Merge/Parallel Odd-Even merge",
-                           "Bitonic Mergesort"]
+        self.algorithms = list(utils.algoList.keys()) # Grab the algoList 
 
         # Generate the sequence
         # TODO: Add a sequence from a file (csv ?)
         self.f1 = tk.Frame(root)
         self.f1.pack()
-        self.l1 = tk.Label(self.f1, text="Generate the Sequence")
+        self.l1 = tk.Label(self.f1, text=f"Generate the Sequence\nEnter the size of the sequence which should belong to [0, {utils.seq_limit}]")
         self.l1.pack()
-        vcmd = (self.f1.register(self.validate_spinbox), "%P") # Command for the verification function
-        self.s1 = tk.Spinbox(self.f1, from_=0, to=10000, width=7, repeatdelay=500, validate="key", validatecommand=vcmd) # TODO: to=utils.seq_limit
+        self.f2 = tk.Frame(self.f1)
+        self.f2.pack()
+        vcmd = (self.f2.register(self.validate_spinbox), "%P", utils.seq_limit) # Register a new command to tkinter (NOTE: %P is the user key input)
+        self.s1 = tk.Spinbox(self.f2, from_=0, to=utils.seq_limit, width=7, repeatdelay=500, validate="key", validatecommand=vcmd)
         self.s1.delete(0, tk.END)
         self.s1.insert(0, "10")   # Set the default value to 10
         self.s1.pack(side="left", padx=5, pady=5)
-        self.b1 = tk.Button(self.f1, text="Generate", command=self.ui_generate_sequence)
+        self.b1 = tk.Button(self.f2, text="Generate", command=self.ui_generate_sequence)
         self.b1.pack()
 
         # Choose a sorting algorithm
-        self.f2 = tk.Frame(root)
-        self.f2.pack(side="left")
-        self.l2 = tk.Label(self.f2, text="Select a Sorting Algorithm")
-        self.l2.pack()
-        self.cb1 = ttk.Combobox(self.f2, values=self.algorithms, state="readonly", width=50) # NOTE: Use state="readonly" to disable typing in the dropbox
-        self.cb1.set("Bubble Sort/Parallel Bubble Sort") # Set the default algorithm on the drop down menu
+        self.f3 = tk.Frame(root)
+        self.f3.pack(side="left")
+        self.l3 = tk.Label(self.f3, text="\nSelect a Sorting Algorithm")
+        self.l3.pack()
+        self.cb1 = ttk.Combobox(self.f3, values=self.algorithms, state="readonly", width=50) # NOTE: Use state="readonly" to disable typing in the dropbox
+        self.cb1.set(self.algorithms[0]) # Set the default algorithm on the drop down menu
         self.cb1.pack(side="left", padx=5, pady=5)
-        self.b2 = tk.Button(self.f2, text="Sort", command=self.run_sort)
+        self.b2 = tk.Button(self.f3, text="Sort", command=self.ui_run_sort)
         self.b2.pack()
 
     # A method that constantly checks if the spinbox input is correct
-    def validate_spinbox(self, value):
+    def validate_spinbox(self, value, limit):
         if (value == ""): return True
 
         try:
             value = int(value)
-            return (0 <= value <= 10000)
+            return (0 <= value <= int(limit))
         except:
             return False
 
     def ui_generate_sequence(self):
-        s1_in = int(self.s1.get())
+        try:
+            s1_in = int(self.s1.get())
+        except:
+            print(f"DEBUG: Wrong UI Sequence Generator input")
+            return
 
         utils.seq = utils.generate_sequence(N=s1_in, min_value=1, max_value=s1_in)
         print(f"DEBUG: Generated Sequence: {utils.seq}")
 
-    def run_sort(self):
-        self.algorithm_choice = self.cb1.get()
-        print(f"DEBUG: Sorting with {self.algorithm_choice}")
+    def ui_run_sort(self):
+        algorithm_choice = self.cb1.get()
+        thread_choice = 1 # TODO: Add thread choice from tkinter input
 
-        match self.algorithm_choice:
-            case "Bubble Sort/Parallel Bubble Sort": pass
-            case "Odd-Even Transposition Sort": pass
-            case "Mergesort/Parallel Mergesort": pass
-            case "Quicksort and Partitioning schemes": pass
-            case "Merging Algorithms: Odd-Even Merge/Parallel Odd-Even merge": pass
-            case "Bitonic Mergesort": pass
+        print(f"DEBUG: Sorting with {algorithm_choice}")
+        sorted_seq = utils.run_sort(utils.seq, algorithm_choice, thread_choice)
+        print(f"DEBUG: {sorted_seq}")
