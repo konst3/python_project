@@ -2,7 +2,7 @@
 # Date: 27/1/2026
 # A timer class to measure the performance of the algorithms
 
-from time import process_time_ns as pt
+from time import time_ns as pt
 
 class Timer:
     def start(self):
