@@ -47,7 +47,7 @@ class ParallelBubbleSort(BubbleSort):
         self.ps_n = ps_n
 
         self.name = "Parallel Bubble Sort"
-        self.complexity = "O(n^2/p + n), p: number of threads"
+        self.complexity = "O(n)"
         self.parallel = True
 
     def parallel_sort(self, a, p_ps):

@@ -10,7 +10,7 @@ class OddEvenTranspositionSort:
         self.ps_n = ps_n
 
         self.name = "Odd Even Transposition Sort"
-        self.complexity = "?"
+        self.complexity = "-"
         self.parallel = True
 
         if (ps_n != 1): print(f"DEBUG: Odd-Even Transposition Sort is not parallel, so it will run on 1 thread instead of {ps_n}")
