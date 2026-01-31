@@ -2,8 +2,6 @@
 # Date: 31/1/2026
 # Implementation of Odd Even Transposition Sort
 
-from utils.sort import compare_and_exchange
-
 import multiprocessing as mp
 
 class OddEvenTranspositionSort:
@@ -31,12 +29,24 @@ class OddEvenTranspositionSort:
 
                 # Even phase
                 for j in range(0, N, 2):
-                    a[j], a[j+1], exchanged_values = compare_and_exchange(a[j], a[j+1], exchanged_values)
+                    k = j + 1
+
+                    if (a[j] > a[k]):
+                        tmp = a[j]
+                        a[j] = a[k]
+                        a[k] = tmp
+                        exchanged_values = True
 
                 # Odd phase
                 for j in range(1, N-1, 2):
-                    a[j], a[j+1], exchanged_values = compare_and_exchange(a[j], a[j+1], exchanged_values)
-                    
+                    k = j + 1
+
+                    if (a[j] > a[k]):
+                        tmp = a[j]
+                        a[j] = a[k]
+                        a[k] = tmp
+                        exchanged_values = True
+
                 if (not exchanged_values): break # Finish sort when there was no value exchange made
 
             return a
@@ -101,19 +111,19 @@ class ParallelOddEvenTranspositionSort(OddEvenTranspositionSort):
 
         i = 0 # TODO: Remove, only for debug
 
-        with mp.Pool(self.ps_n) as pool:
+        # with mp.Pool(self.ps_n) as pool:
             # while True:
-            for i in range(N//2):
-                self.exchanged_values = False
+            # for i in range(N//2):
+                # self.exchanged_values = False
 
                 # Even phase
-                even_pairs = [[a[j], a[j+1]] for j in range(0, N, 2)] # Get the even pairs from the sequence
-                a = self.merge_pairs(pool.map(compare_and_exchange, even_pairs))
+                # even_pairs = [[a[j], a[j+1]] for j in range(0, N, 2)] # Get the even pairs from the sequence
+                # a = self.merge_pairs(pool.map(compare_and_exchange, even_pairs))
                 # print(a)
                 
                 # Odd phase
-                odd_pairs = [[a[j], a[j+1]] for j in range(1, N-1, 2)]
-                a = [a[0]] + self.merge_pairs(pool.map(compare_and_exchange, odd_pairs)) + [a[N-1]]
+                # odd_pairs = [[a[j], a[j+1]] for j in range(1, N-1, 2)]
+                # a = [a[0]] + self.merge_pairs(pool.map(compare_and_exchange, odd_pairs)) + [a[N-1]]
                 # print(a)
 
                 # Odd phase
@@ -125,7 +135,7 @@ class ParallelOddEvenTranspositionSort(OddEvenTranspositionSort):
 
                 # if (not self.exchanged_values): break # Finish sort when there was no value exchange made
 
-            return a
+        return a
             
 
     def run(self):

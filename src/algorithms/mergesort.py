@@ -2,14 +2,14 @@
 # Date: 31/1/2026
 # Implementation of Merge Sort
 
-from utils.sort import compare_and_exchange
+from utils.sort import merge_lists
 
 class MergeSort:
     def __init__(self, seq, ps_n=1):
         self.seq = seq
 
         self.name = "Merge Sort"
-        self.complexity = "O(n^2)"
+        self.complexity = "O(nlogn)"
         self.parallel = False
 
         if (ps_n != 1): print(f"DEBUG: Merge Sort is not parallel, so it will run on 1 thread instead of {ps_n}")
@@ -26,12 +26,10 @@ class MergeSort:
         a_left = a[:mid]
         a_right = a[mid:]
 
-        print(a_left, a_right)
-
-        self.sort(a_left)
+        a_left = self.sort(a_left)
+        a_right = self.sort(a_right)
         
-        a_left, a_right, _ = compare_and_exchange(a_left, a_right)
-
+        a = merge_lists(a_left, a_right)
         return a
 
     def run(self):
