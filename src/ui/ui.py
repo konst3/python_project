@@ -2,6 +2,7 @@
 # Date: 19/1/2026
 
 import utils.utils as utils
+import utils.sort as sort_utils
 
 from tkinter import ttk
 import tkinter as tk
@@ -53,6 +54,7 @@ class UI:
 
         # Results
         # TODO: Add results to the UI
+        # StringVar for time_taken variable in ui_run_sort and tk.Label ?
 
     # A method that constantly checks if the spinbox input is correct
     def validate_spinbox(self, value, limit):
@@ -75,14 +77,20 @@ class UI:
         print(f"DEBUG: Generated Sequence: {utils.seq}")
 
     def ui_run_sort(self):
+        try:
+            algorithm_choice = self.cb1.get()
+            thread_choice = int(self.s2.get())
+        except:
+            print(f"DEBUG: Wrong UI Sort Algorithm input")
+            return
+
         print(f"DEBUG: Starting with: {utils.seq}")
 
-        algorithm_choice = self.cb1.get()
-        thread_choice = int(self.s2.get())
+        print(f"DEBUG: User choosed {algorithm_choice} with {thread_choice} threads")
+        sorted_seq, time_taken = utils.run_sort(utils.seq.copy(), algorithm_choice, thread_choice) # NOTE: Use a copy of the list so that the main list does not get overwritten
 
-        print(f"DEBUG: User choosed {algorithm_choice} with threads: {thread_choice}")
-        sorted_seq = utils.run_sort(utils.seq.copy(), algorithm_choice, thread_choice) # NOTE: Use a copy of the list so that the main list does not get overwritten
+        print(f"DEBUG: Result: {sorted_seq}")
+        print(f"DEBUG: Time taken: {time_taken} ms")
+        print(f"DEBUG: {"Sort was correct" if sort_utils.validate_sort(sorted_seq.copy()) else "There was a mistake in the sort!"}")
 
-        print(f"DEBUG: {sorted_seq}")
-        
         # TODO: Save to a file

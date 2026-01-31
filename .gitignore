@@ -7,3 +7,7 @@ __pycache__/
 
 # OS
 .DS_Store
+
+# Presentation files
+presentation/
+*.png

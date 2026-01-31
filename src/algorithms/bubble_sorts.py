@@ -2,17 +2,21 @@
 # Date: 13/1/2026
 # Implementation of Sequencial Bubble Sort Algorithm
 
-# XXX: ONLY DEMO, NOT FINISHED
+from utils.sort import compare_and_exchange
 
 import multiprocessing as mp
 
 # Bubble Sort
-class Bubble_sort:
-    def __init__(self, seq, thr=1):
+class BubbleSort:
+    def __init__(self, seq, ps_n=1):
         self.seq = seq
 
         self.name = "Bubble Sort"
         self.complexity = "O(n^2)"
+        self.parallel = False
+
+        if (ps_n != 1): print(f"DEBUG: Bubble Sort is not parallel, so it will run on 1 thread instead of {ps_n}")
+
 
     def __str__(self):
         return f"Algorithm {self.name}, Complexity: {self.complexity}"
@@ -22,30 +26,29 @@ class Bubble_sort:
 
         for i in range(N-1, 0, -1):
             for j in range(0, i, 1):
-                k = j + 1
+                # k = j + 1
+                # if (a[j] > a[k]):
+                #     tmp = a[j]
+                #     a[j] = a[k]
+                #     a[k] = tmp
 
-                if (a[j] > a[k]):
-                    tmp = a[j]
-                    a[j] = a[k]
-                    a[k] = tmp
+                a[j], a[j+1], _ = compare_and_exchange(a[j], a[j+1])
                 
         return a
 
     def run(self):
-        return f"Result: {self.sort(self.seq)}"
+        return self.sort(self.seq)
 
+# XXX: ONLY DEMO, NOT FINISHED
 # Parallel Bubble Sort
-class Parallel_Bubble_sort(Bubble_sort):
+class ParallelBubbleSort(BubbleSort):
     def __init__(self, seq, ps_n):
         self.seq = seq
         self.ps_n = ps_n
 
-        if (ps_n == 0):
-            print("ERROR: You must select the single thread sort")
-            exit(-1)
-
         self.name = "Parallel Bubble Sort"
         self.complexity = "O(n^2/p + n), p: number of threads"
+        self.parallel = True
 
     def merge_lists(self, l1, l2):
         merged = []
@@ -87,6 +90,6 @@ class Parallel_Bubble_sort(Bubble_sort):
             self.sorted.pop(1)
 
         return self.sorted[0]
-    
+
     def run(self):
-        return f"Result: {self.parallel_sort(self.seq, self.ps_n)}"
+        return self.parallel_sort(self.seq, self.ps_n)
