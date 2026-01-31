@@ -20,12 +20,18 @@ python3 src/main.py
 
 ## TO DO
 1. Sort algoritmhs implementation:
-- <s>Bubble sort/Parallel bubble sort</s> <-- Check Parallel bubble Sort
-- <s>odd-even transposition sort</s> <-- Parallel needs improvements
-- <s>Mergesort</s>/Parallel mergesort
-- quicksort and partitioning schemes                     
-- Merging algorithms: odd-even merge/parallel odd-even merge
-- bitonic mergesort
+- <s>Bubble sort</s>
+- Parallel bubble sort
+- <s>Odd-Even Transposition Sort</s> <-- Single thread --> Do parallel
+- <s>Mergesort</s>
+- Parallel mergesort
+- Quicksort
+- Quicksort: Lomuto Partition Scheme
+- Quicksort: Hoare Partition Scheme
+- Parallel Quicksort                     
+- Merging algorithms: Odd-Even mMrge
+- Merging algorithms: Parallel odd-even merge
+- Bitonic mergesort
 
 2. UI implementation (using matplotlib, pygame, tkinter ?):
 - <s>Choose the algorithm you want to use</s>
