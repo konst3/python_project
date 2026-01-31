@@ -20,11 +20,11 @@ python3 src/main.py
 
 ## TO DO
 1. Sort algoritmhs implementation:
-- <s>Bubble sort</s>
-- Parallel bubble sort
-- <s>Odd-Even Transposition Sort</s> <-- Single thread --> Do parallel
-- <s>Mergesort</s>
-- Parallel mergesort
+- <s>Bubble sort</s> _@konst3_
+- <s>Parallel bubble sort</s> <-- Does not work properly ? _@konst3_
+- <s>Odd-Even Transposition Sort</s> <-- Single thread: Do parallel _@konst3_
+- <s>Mergesort</s> _@konst3_
+- Parallel mergesort _@konst3_
 - Quicksort
 - Quicksort: Lomuto Partition Scheme
 - Quicksort: Hoare Partition Scheme
@@ -34,18 +34,23 @@ python3 src/main.py
 - Bitonic mergesort
 
 2. UI implementation (using matplotlib, pygame, tkinter ?):
-- <s>Choose the algorithm you want to use</s>
-- Show stats like (1) time, (2) number of processes (would be better if it had core utilization too ?), (3) batch size (WARNING: batch size will be large)
+- <s>Generate a sequence (WARNING: sequence size will be large)</s> _@konst3_
+- <s>Choose the algorithm you want to use</s> _@konst3_, _@devnol_
+- <s>Show number of processes</s> (would be better if it had core utilization too ?) _@konst3_, _@devnol_
+- Show time taken (ms ?) _@devnol_
+
+3. Utils
+- <s>UI backend to handle the running of the chosen algorithm</s> _@devnol_
 
 ## Links
 https://www.dcc.fc.up.pt/~ricroc/aulas/1516/cp/apontamentos/slides_sorting.pdf
 
-Algorithms
+Algorithms\
 https://docs.python.org/3/library/multiprocessing.html
 https://docs.python.org/2/library/time.html#time.process_time_ns
 https://www.geeksforgeeks.org/dsa/odd-even-transposition-sort-brick-sort-using-pthreads/
 https://www.geeksforgeeks.org/python/python-program-for-merge-sort/
 
-UI
-ttk.Combobox https://www.geeksforgeeks.org/python/dropdown-menus-tkinter/
+UI\
+ttk.Combobox: https://www.geeksforgeeks.org/python/dropdown-menus-tkinter/\
 tk.Spinbox
