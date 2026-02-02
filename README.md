@@ -25,11 +25,11 @@ python3 src/main.py
 - <s>Odd-Even Transposition Sort</s> <-- Single thread: Do parallel _@konst3_
 - <s>Mergesort</s> _@konst3_
 - Parallel mergesort _@konst3_
-- Quicksort
+- <s>Quicksort</s> _@devnol_
 - Quicksort: Lomuto Partition Scheme
 - Quicksort: Hoare Partition Scheme
 - Parallel Quicksort                     
-- Merging algorithms: Odd-Even mMrge
+- Merging algorithms: Odd-Even Merge
 - Merging algorithms: Parallel odd-even merge
 - Bitonic mergesort
 
@@ -50,6 +50,7 @@ https://docs.python.org/3/library/multiprocessing.html
 https://docs.python.org/2/library/time.html#time.process_time_ns
 https://www.geeksforgeeks.org/dsa/odd-even-transposition-sort-brick-sort-using-pthreads/
 https://www.geeksforgeeks.org/python/python-program-for-merge-sort/
+Γιώργος Μανής - Εισαγωγή στον προγραμματισμό με αρωγό τη γλώσσα python - Kallipos
 
 UI\
 ttk.Combobox: https://www.geeksforgeeks.org/python/dropdown-menus-tkinter/\

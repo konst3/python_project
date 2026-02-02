@@ -46,11 +46,11 @@ if (__name__  == "__main__"):
     print("DEBUG: Available algorithms:")
     for algo in algoList.items():
         print(f" - {algo[0]}: {algo[1]}")
-    seq = generate_sequence(50000, max_value=100000)
+    seq = generate_sequence(500, max_value=1000)
     print(f"DEBUG: Generated sequence: {seq}")
-    result = run_sort(seq, "Bubble Sort")
+    result = run_sort(seq, "Quicksort")
+    #result = run_sort(seq, "Bubble Sort")
     print(f"DEBUG: Time taken: {t.get_time()/(10**6)} ms") # TODO: Add /(10**6) to get_time() func
     #print(f"DEBUG: {result}")
-    result = run_sort(seq, "Parallel Bubble Sort", thr=6)
-    print(f"DEBUG: Parallel Time taken: {t.get_time()/(10**6)} ms")
-    #print(f"DEBUG: {result}")
+    #print(f"DEBUG: Parallel Time taken: {t.get_time()/(10**6)} ms")
+    print(f"DEBUG: {result}")
