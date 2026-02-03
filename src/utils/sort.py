@@ -3,11 +3,12 @@
 # Basic utilities that algorithms need
 
 # Function to validate the accuracy of the sort
-def validate_sort(seq):
-    val_seq = list(range(1, len(seq) + 1))
-    
-    if (seq == val_seq): return True
-    else: return False
+def validate_sort(seq): # O(N) sort validator
+    for i in range(len(seq)-1):
+        if (seq[i] < seq[i+1]):
+            continue
+        else: return False
+    return True
 
 # Merge 2 sorted lists into one sorted list
 def merge_lists(l1, l2):

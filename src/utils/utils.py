@@ -4,6 +4,7 @@
 
 import random
 import utils.timer as timer
+import utils.sort as sort
 from algorithms import bubble_sorts, mergesort, bitonic_mergesort, odd_even_merge_sort, odd_even_transposition_sort, quicksort
 
 t = timer.Timer()
@@ -21,6 +22,7 @@ algoList = {
 seq = [1, 2] # Global list for the sequence
 seq_limit = 1000000 # Maximum size of list
 thread_limit = 100 # Maximum number of threads
+seq_display_limit = 100 # limit after which a sequence won't be printed in its entirety on the console
 
 # Generate a random sequence that has numbers that appear only once in it
 def generate_sequence(N, min_value=1, max_value=seq_limit):
@@ -48,9 +50,11 @@ if (__name__  == "__main__"):
         print(f" - {algo[0]}: {algo[1]}")
     seq = generate_sequence(500, max_value=1000)
     print(f"DEBUG: Generated sequence: {seq}")
+    print(sort.validate_sort(seq))
     result = run_sort(seq, "Quicksort")
     #result = run_sort(seq, "Bubble Sort")
     print(f"DEBUG: Time taken: {t.get_time()/(10**6)} ms") # TODO: Add /(10**6) to get_time() func
     #print(f"DEBUG: {result}")
     #print(f"DEBUG: Parallel Time taken: {t.get_time()/(10**6)} ms")
     print(f"DEBUG: {result}")
+    print(sort.validate_sort(result[0]))

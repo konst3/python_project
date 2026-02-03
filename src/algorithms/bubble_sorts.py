@@ -8,18 +8,18 @@ import multiprocessing as mp
 
 # Bubble Sort
 class BubbleSort:
+    name = "Bubble Sort"
+    complexity = "O(n^2)"
+    parallel = False
     def __init__(self, seq, ps_n=1):
         self.seq = seq
 
-        self.name = "Bubble Sort"
-        self.complexity = "O(n^2)"
-        self.parallel = False
 
         if (ps_n != 1): print(f"DEBUG: Bubble Sort is not parallel, so it will run on 1 thread instead of {ps_n}")
 
 
     def __str__(self):
-        return f"Algorithm {self.name}, Complexity: {self.complexity}"
+        return f"Algorithm {BubbleSort.name}, Complexity: {BubbleSort.complexity}"
 
     def sort(self, a):
         N = len(a)
@@ -42,13 +42,18 @@ class BubbleSort:
 # XXX: ONLY DEMO, NOT FINISHED
 # Parallel Bubble Sort
 class ParallelBubbleSort(BubbleSort):
+    name = "Parallel Bubble Sort"
+    complexity = "O(n)"
+    parallel = True
+    
     def __init__(self, seq, ps_n):
         self.seq = seq
         self.ps_n = ps_n
+    
+    def __str__(self):
+        return f"Algorithm {ParallelBubbleSort.name}, Complexity: {ParallelBubbleSort.complexity}"
 
-        self.name = "Parallel Bubble Sort"
-        self.complexity = "O(n)"
-        self.parallel = True
+
 
     def parallel_sort(self, a, p_ps):
         # Devide the sequence into chunks
