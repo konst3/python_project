@@ -7,6 +7,7 @@ import utils.timer as timer
 import utils.sort as sort
 from algorithms import bubble_sorts, odd_even_transposition_sorts, merge_sorts, quicksort, bitonic_merge_sort, odd_even_merge_sort
 
+VERSION = "0.7"
 t = timer.Timer()
 
 algoList = {
@@ -53,7 +54,7 @@ if (__name__  == "__main__"):
     print(sort.validate_sort(seq))
     result = run_sort(seq, "Quicksort")
     #result = run_sort(seq, "Bubble Sort")
-    print(f"DEBUG: Time taken: {t.get_time()/(10**6)} ms") # TODO: Add /(10**6) to get_time() func
+    print(f"DEBUG: Time taken: {t.get_time()/(10**6)} ms") 
     #print(f"DEBUG: {result}")
     #print(f"DEBUG: Parallel Time taken: {t.get_time()/(10**6)} ms")
     print(f"DEBUG: {result}")

@@ -41,6 +41,12 @@ follow the on screen menu
 - Load a sequence from a file (csv ?)
 - Add complexity of an algorithm to UI drop menu
 
+5. Presentation
+- Make markdown (update images) _@konst3_
+- Make paper
+- Make pptx
+- Make personal description of contributions to the project 
+
 ## Links
 https://www.dcc.fc.up.pt/~ricroc/aulas/1516/cp/apontamentos/slides_sorting.pdf
 
