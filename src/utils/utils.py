@@ -7,7 +7,7 @@ import utils.timer as timer
 import utils.sort as sort
 from algorithms import bubble_sorts, merge_sorts, quicksorts, odd_even_merge_sort, bitonic_merge_sort
 
-VERSION = "0.8"
+VERSION = "1.0"
 t = timer.Timer()
 
 algoList = {
@@ -16,6 +16,8 @@ algoList = {
     "Merge Sort": merge_sorts.MergeSort,
     "Parallel Merge Sort": merge_sorts.ParallelMergeSort,
     "Quicksort": quicksorts.QuickSort,
+    "Lomuto Quicksort": quicksorts.LomutoQuickSort,
+    "Hoare Quicksort": quicksorts.HoareQuickSort,
     "Parallel Quicksort": quicksorts.ParallelQuickSort,
     "Odd-Even Merge Sort (Parallel)": odd_even_merge_sort.OddEvenMergeSort,
     "Bitonic Mergesort (Parallel)": bitonic_merge_sort.BitonicMergeSort

@@ -15,17 +15,15 @@ The application should look like this, follow the on screen menu
 ## TO DO
 1. Sort algoritmhs implementation:
 - <s>Bubble sort</s> _@konst3_
-- <s>Parallel bubble sort</s> <-- Does not work properly ? _@konst3_
-- <s>Odd-Even Transposition Sort</s> <-- Single thread: Do parallel _@konst3_
+- <s>Parallel bubble sort/Odd-Even Transposition Sort</s> <-- Too big overhead _@konst3_
 - <s>Mergesort</s> _@konst3_
-- Parallel mergesort _@konst3_
+- <s>Parallel mergesort</s> _@konst3_
 - <s>Quicksort</s> _@devnol_
-- Quicksort: Lomuto Partition Scheme
-- Quicksort: Hoare Partition Scheme
+- <s>Lomuto Quicksort Scheme</s> _@konst3_
+- <s>Quicksort Hoare Partition Scheme</s> _@konst3_
 - Parallel Quicksort                     
-- Merging algorithms: Odd-Even Merge
-- Merging algorithms: Parallel odd-even merge
-- Bitonic mergesort
+- Merging algorithms: Odd-Even Mergesort (Parallel)
+- Bitonic mergesort (Parallel)
 
 2. UI implementation (using tkinter):
 - <s>Generate a sequence (WARNING: sequence size will be large)</s> _@konst3_
@@ -35,6 +33,7 @@ The application should look like this, follow the on screen menu
 
 3. Utils
 - <s>UI backend to handle the running of the chosen algorithm</s> _@devnol_
+- <s>Unit testing</s> _@devnol_
 
 4. Features
 - Load a sequence from a file (csv ?)
