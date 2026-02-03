@@ -7,14 +7,12 @@ class QuickSort:
     name = "Bubble Sort"
     complexity = "O(NlogN)"
     parallel = False
+    
     def __init__(self, seq, ps_n=1):
         self.seq = seq
 
         if (ps_n != 1): print(f"DEBUG: Quicksort is not parallel, so it will run on 1 thread instead of {ps_n}")
 
-    def __str__(self):
-        return f"Algorithm {QuickSort.name}, Complexity: {QuickSort.complexity}"
-    
     def sort(self, a):
         #N = len(a)
         lt = []

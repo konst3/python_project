@@ -11,15 +11,11 @@ class BubbleSort:
     name = "Bubble Sort"
     complexity = "O(n^2)"
     parallel = False
+
     def __init__(self, seq, ps_n=1):
         self.seq = seq
 
-
         if (ps_n != 1): print(f"DEBUG: Bubble Sort is not parallel, so it will run on 1 thread instead of {ps_n}")
-
-
-    def __str__(self):
-        return f"Algorithm {BubbleSort.name}, Complexity: {BubbleSort.complexity}"
 
     def sort(self, a):
         N = len(a)
@@ -50,11 +46,6 @@ class ParallelBubbleSort(BubbleSort):
         self.seq = seq
         self.ps_n = ps_n
     
-    def __str__(self):
-        return f"Algorithm {ParallelBubbleSort.name}, Complexity: {ParallelBubbleSort.complexity}"
-
-
-
     def parallel_sort(self, a, p_ps):
         # Devide the sequence into chunks
         self.chunks = []

@@ -5,18 +5,18 @@
 import random
 import utils.timer as timer
 import utils.sort as sort
-from algorithms import bubble_sorts, mergesort, bitonic_mergesort, odd_even_merge_sort, odd_even_transposition_sort, quicksort
+from algorithms import bubble_sorts, odd_even_transposition_sorts, merge_sorts, quicksort, bitonic_merge_sort, odd_even_merge_sort
 
 t = timer.Timer()
 
 algoList = {
     "Bubble Sort": bubble_sorts.BubbleSort,
     "Parallel Bubble Sort": bubble_sorts.ParallelBubbleSort,
-    "Odd-Even Transposition Sort": odd_even_transposition_sort.OddEvenTranspositionSort,
-    "Mergesort": mergesort.MergeSort,
-    "Quicksort": quicksort.QuickSort,
-    "Odd-Even Merge Sort": odd_even_merge_sort.OddEvenMergeSort,
-    "Bitonic Mergesort": bitonic_mergesort.BitonicMergeSort
+    "Odd-Even Transposition Sort": odd_even_transposition_sorts.OddEvenTranspositionSort,
+    "Merge Sort": merge_sorts.MergeSort,
+    "Quicksort": quicksort.QuickSort #,
+    # "Odd-Even Merge Sort": odd_even_merge_sort.OddEvenMergeSort,
+    # "Bitonic Mergesort": bitonic_mergesort.BitonicMergeSort
 }
 
 seq = [1, 2] # Global list for the sequence

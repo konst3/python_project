@@ -37,10 +37,13 @@ python3 src/main.py
 - <s>Generate a sequence (WARNING: sequence size will be large)</s> _@konst3_
 - <s>Choose the algorithm you want to use</s> _@konst3_, _@devnol_
 - <s>Show number of processes</s> (would be better if it had core utilization too ?) _@konst3_, _@devnol_
-- Show time taken (ms ?) _@devnol_
+- <s>Show time taken (ms ?)</s> _@devnol_
 
 3. Utils
 - <s>UI backend to handle the running of the chosen algorithm</s> _@devnol_
+
+4. Features
+- Load a sequence from a file (csv ?)
 
 ## Links
 https://www.dcc.fc.up.pt/~ricroc/aulas/1516/cp/apontamentos/slides_sorting.pdf
@@ -55,3 +58,4 @@ https://www.geeksforgeeks.org/python/python-program-for-merge-sort/
 UI\
 ttk.Combobox: https://www.geeksforgeeks.org/python/dropdown-menus-tkinter/\
 tk.Spinbox
+.bind() --> bind a function on an event of the widget
