@@ -1,13 +1,6 @@
-# 1st semester python project at ECE upatras 
-## Implementation of various single and parallel sorting algoritms in Python
+## Implementation of various single and parallel sorting algoritms in Python - 1st semester python project at ECE upatras 
 
 ## How to run
-Install dependencies (Run this only the first time):
-\
-`
-pip install -r requirements.txt
-`
-
 Run main code via:
 \
 `
@@ -16,7 +9,8 @@ python3 src/main.py
 
 (**NOTE:** Run the bash commands on the project directory)
 
-
+Then the application should look like this
+![App](app)
 
 ## TO DO
 1. Sort algoritmhs implementation:
@@ -33,7 +27,7 @@ python3 src/main.py
 - Merging algorithms: Parallel odd-even merge
 - Bitonic mergesort
 
-2. UI implementation (using matplotlib, pygame, tkinter ?):
+2. UI implementation (using tkinter):
 - <s>Generate a sequence (WARNING: sequence size will be large)</s> _@konst3_
 - <s>Choose the algorithm you want to use</s> _@konst3_, _@devnol_
 - <s>Show number of processes</s> (would be better if it had core utilization too ?) _@konst3_, _@devnol_
@@ -44,6 +38,7 @@ python3 src/main.py
 
 4. Features
 - Load a sequence from a file (csv ?)
+- Add complexity of an algorithm to UI drop menu
 
 ## Links
 https://www.dcc.fc.up.pt/~ricroc/aulas/1516/cp/apontamentos/slides_sorting.pdf

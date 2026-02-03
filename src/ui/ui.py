@@ -118,7 +118,7 @@ class UI:
         if len(utils.seq) <= utils.seq_display_limit:
             self.printUI(f"\nGenerated new Sequence: {utils.seq}, size: {len(utils.seq)}\n")
         else:
-            self.printUI(f"\nGenerated new large Sequence: {utils.seq[0:20+1]}...{utils.seq[len(utils.seq)-20:len(utils.seq)+1]}, size {len(utils.seq)}\n")
+            self.printUI(f"\nGenerated new large Sequence: {utils.seq[0:20]}...{utils.seq[len(utils.seq)-20:len(utils.seq)+1]}, size {len(utils.seq)}\n")
 
         self.b2.config(state="normal")
 
