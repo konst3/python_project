@@ -1,11 +1,13 @@
 # Authors: Konstantinos Papalamprou
 # Date: 31/1/2026
-# Implementation of Merge Sort
+#
+# Implementation of
+#   1. Merge Sort
+#   2. Parallel Merge Sort
 
 from utils.sort import merge_lists
 
 class MergeSort:
-    name = "Merge Sort"
     complexity = "O(nlogn)"
     parallel = False
 
@@ -41,21 +43,8 @@ class ParallelMergeSort:
         self.seq = seq
         self.ps_n = ps_n
 
-    def process_lower(self, list_):
-        p = list_
-
-    def process_higher(self, list_):
-        pass
-
     def parallel_sort(self, seq, ps_n):
-        seq_left = seq[:len(seq)//2]
-        seq_right = seq[len(seq)//2:]
-
-        while (len(seq_left) > 1):
-            seq_left = seq_left[:len(seq_left)//2]
-            seq_right = seq_left[len(seq_right)//2:]
-
-            print(seq_left, seq_right)
+        N = len(seq)
 
         return seq
 

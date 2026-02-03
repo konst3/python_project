@@ -1,5 +1,6 @@
 # Authors: Konstantinos Papalamprou, Panagiotis Koutsoumanis
 # Date: 27/1/2026
+#
 # A timer class to measure the performance of the algorithms
 
 from time import time_ns as pt

@@ -1,5 +1,6 @@
 # Authors: Konstantinos Papalamprou
 # Date: 31/1/2026
+#
 # Basic utilities that algorithms need
 
 # Function to validate the accuracy of the sort

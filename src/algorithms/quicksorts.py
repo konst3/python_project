@@ -1,10 +1,11 @@
-#Authors: Panagiotis Koutsoumanis
-#Date: 3/2/2026
-#Implementation of Quicksort Algorithm
-from utils.sort import merge_lists
+# Authors: Panagiotis Koutsoumanis
+# Date: 3/2/2026
+#
+# Implementation of Quicksort Algorithm:
+#   1. Quicksort
+#   2. Parallel Quicksort
 
 class QuickSort:
-    name = "Bubble Sort"
     complexity = "O(NlogN)"
     parallel = False
     
@@ -30,3 +31,5 @@ class QuickSort:
     def run(self):
         return self.sort(self.seq)
 
+class ParallelQuickSort:
+    pass

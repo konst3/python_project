@@ -5,25 +5,27 @@
 import random
 import utils.timer as timer
 import utils.sort as sort
-from algorithms import bubble_sorts, odd_even_transposition_sorts, merge_sorts, quicksort, bitonic_merge_sort, odd_even_merge_sort
+from algorithms import bubble_sorts, merge_sorts, quicksorts, odd_even_merge_sort, bitonic_merge_sort
 
-VERSION = "0.7"
+VERSION = "0.8"
 t = timer.Timer()
 
 algoList = {
     "Bubble Sort": bubble_sorts.BubbleSort,
-    "Parallel Bubble Sort": bubble_sorts.ParallelBubbleSort,
-    "Odd-Even Transposition Sort": odd_even_transposition_sorts.OddEvenTranspositionSort,
+    "Parallel Bubble Sort/Odd-Even Transposition Sort": bubble_sorts.OddEvenTranspositionSort,
     "Merge Sort": merge_sorts.MergeSort,
-    "Quicksort": quicksort.QuickSort #,
-    # "Odd-Even Merge Sort": odd_even_merge_sort.OddEvenMergeSort,
-    # "Bitonic Mergesort": bitonic_mergesort.BitonicMergeSort
+    "Parallel Merge Sort": merge_sorts.ParallelMergeSort,
+    "Quicksort": quicksorts.QuickSort,
+    "Parallel Quicksort": quicksorts.ParallelQuickSort,
+    "Odd-Even Merge Sort (Parallel)": odd_even_merge_sort.OddEvenMergeSort,
+    "Bitonic Mergesort (Parallel)": bitonic_merge_sort.BitonicMergeSort
 }
 
 seq = [1, 2] # Global list for the sequence
 seq_limit = 1000000 # Maximum size of list
 thread_limit = 100 # Maximum number of threads
 seq_display_limit = 100 # limit after which a sequence won't be printed in its entirety on the console
+tb_width = 140 # Width of the text box in the UI
 
 # Generate a random sequence that has numbers that appear only once in it
 def generate_sequence(N, min_value=1, max_value=seq_limit):
@@ -49,13 +51,16 @@ if (__name__  == "__main__"):
     print("DEBUG: Available algorithms:")
     for algo in algoList.items():
         print(f" - {algo[0]}: {algo[1]}")
-    seq = generate_sequence(500, max_value=1000)
+    seq = generate_sequence(100, max_value=100)
+
     print(f"DEBUG: Generated sequence: {seq}")
     print(sort.validate_sort(seq))
-    result = run_sort(seq, "Quicksort")
-    #result = run_sort(seq, "Bubble Sort")
+
+    # result = run_sort(seq, "Quicksort")
+    # result = run_sort(seq, "Bubble Sort")
+    result = run_sort(seq, "Parallel Bubble Sort/Odd-Even Transposition Sort", 5)
+    
     print(f"DEBUG: Time taken: {t.get_time()/(10**6)} ms") 
-    #print(f"DEBUG: {result}")
-    #print(f"DEBUG: Parallel Time taken: {t.get_time()/(10**6)} ms")
+    
     print(f"DEBUG: {result}")
     print(sort.validate_sort(result[0]))

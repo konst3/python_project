@@ -1,5 +1,7 @@
-# Authors: Konstantinos Papalamprou, 
+# Authors: Konstantinos Papalamprou, Panagiotis Koutsoumanis
 # Date: 19/1/2026
+#
+# UI
 
 import utils.utils as utils
 import utils.sort as sort_utils
@@ -12,7 +14,6 @@ class UI:
         self.root = root
 
         root.title(f"1st Semester Python Project - Sort Algorithms (v{utils.VERSION})")
-        # root.geometry("600x300")
         root.resizable(False, False)
 
         self.algorithms = list(utils.algoList.keys()) # Grab the algorithm names from the algoList keys
@@ -58,23 +59,23 @@ class UI:
         self.l4.pack(side="bottom", padx=10, pady=10)
 
         # Results
-        self.tb = scrolledtext.ScrolledText(self.root, wrap = tk.WORD, height=20, state="normal", font=("Courier", 10)) # NOTE: use monospace for support on any os (alternatively use JetBrains Mono)
+        self.tb = scrolledtext.ScrolledText(self.root, wrap = tk.WORD, height=20, width=utils.tb_width, state="normal", font=("Courier", 10)) # NOTE: use monospace for support on any os (alternatively use JetBrains Mono)
         self.tb.pack(side="bottom", padx=10, pady=10)
         #self.tb.insert(tk.INSERT,"hello")
         self.tb.configure(state="disabled")
 
         # Load instructions to the UI
-        self.printUI(f"{" Manual ":=^80}")
+        self.printUI(f"{" Manual ":=^{int(utils.tb_width)}}")
         self.printUI("1. On the \"Generate Sequence\" Section you must first select the size of the sequence you want & click generate for your sequence to be generated")
         self.printUI("  NOTE: The sequence will be a list of numbers from 1 to the number you selected in a random order")
         self.printUI("  WARNING: You must generate a sequence before sorting otherwise the sort button will be disabled")
         self.printUI("2. Then on the \"Select a Sorting Algorithm & Number of Threads\" you can choose from a variety of single and parallel processing sorting algorithms to sort your list and if the algorithm is parallel you could select a different number of processes from the box next")
         self.printUI("  WARNING: The thread option will be deactivated for single threaded algorithms")
         self.printUI("3. When you press the \"Sort\" button the sorting results will appear under here")
-        self.printUI(f"{"":=^80}")
+        self.printUI(f"{"":=^{int(utils.tb_width)}}")
 
         self.printUI(" ")
-        self.printUI(f"{" Results ":=^80}")
+        self.printUI(f"{" Results ":=^{int(utils.tb_width)}}")
 
 
     # Helper function for printing to the UI "console"
@@ -139,10 +140,10 @@ class UI:
         #    self.printUI(f"Result: {sorted_seq}")
 
         sorted_seq, time_taken = utils.run_sort(utils.seq.copy(), algorithm_choice, thread_choice) # NOTE: Use a copy of the list so that the main list does not get overwritten
-        outln = f"{algorithm_choice:<30}| Threads: {threads_used:>5} | Time Taken: {time_taken:>15.3f}ms" # NOTE: ":" right aligned, "<" left aligned, "^" center aligned
+        outln = f"{algorithm_choice:<50} | BigO: {utils.algoList[algorithm_choice].complexity:>15} | Threads: {threads_used:>5} | Size: {len(utils.seq):>6} | Time Taken: {time_taken:>15.3f}ms" # NOTE: ":" right aligned, "<" left aligned, "^" center aligned
         self.printUI(outln)
         #debug prints
+        print(f"DEBUG: Result: {sorted_seq}")
         print(f"DEBUG: Time taken: {time_taken} ms")
         print(f"DEBUG: {"Sort was correct" if sort_utils.validate_sort(sorted_seq.copy()) else "Sort was wrong"}")
-        print(f"DEBUG: Result: {sorted_seq}")
         # TODO: Save to a file
