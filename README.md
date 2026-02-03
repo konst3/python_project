@@ -9,9 +9,8 @@ python3 src/main.py
 
 (**NOTE:** Run the bash commands on the project directory)
 
-The application should look like this
+The application should look like this, follow the on screen menu
 ![App](assets/app.png)
-follow the on screen menu
 
 ## TO DO
 1. Sort algoritmhs implementation:
