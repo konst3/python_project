@@ -5,6 +5,8 @@
 
 # Function to validate the accuracy of the sort
 def validate_sort(seq): # O(N) sort validator
+    if len(seq) < 1: return False
+
     for i in range(len(seq)-1):
         if (seq[i] < seq[i+1]):
             continue

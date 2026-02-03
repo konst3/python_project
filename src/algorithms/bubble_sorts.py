@@ -57,7 +57,7 @@ class OddEvenTranspositionSort:
 
             # print(f"DEBUG: Phase {phase} - Active children BEFORE pool: {len(mp.active_children())}")
 
-            with mp.Pool(processes=self.ps_n) as pool: # NOTE: Add the poll outside of the loop to avoid overhead
+            with mp.Pool(processes=self.ps_n) as pool: # NOTE: Add the pool outside of the loop to avoid overhead
                 while not sorted_flag.value:
                     # print(f"DEBUG: Phase {phase} - INSIDE even pool: {len(mp.active_children())} processes")
                     sorted_flag.value = True

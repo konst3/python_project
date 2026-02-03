@@ -17,8 +17,8 @@ class UI:
         root.resizable(False, False)
 
         self.algorithms = list(utils.algoList.keys()) # Grab the algorithm names from the algoList keys
+        
         # Generate the sequence
-        # TODO: Add a sequence from a file (csv ?)
         self.f1 = tk.Frame(self.root)
         self.f1.pack()
         self.l1 = tk.Label(self.f1, text=f"Generate the Sequence\nEnter the size of the sequence which should belong to [0, {utils.seq_limit}]")
@@ -146,4 +146,3 @@ class UI:
         print(f"DEBUG: Result: {sorted_seq}")
         print(f"DEBUG: Time taken: {time_taken} ms")
         print(f"DEBUG: {"Sort was correct" if sort_utils.validate_sort(sorted_seq.copy()) else "Sort was wrong"}")
-        # TODO: Save to a file

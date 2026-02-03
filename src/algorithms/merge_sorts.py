@@ -7,6 +7,9 @@
 
 from utils.sort import merge_lists
 
+import multiprocessing as mp
+
+# Merge Sort implementation
 class MergeSort:
     complexity = "O(nlogn)"
     parallel = False
@@ -33,30 +36,46 @@ class MergeSort:
 
     def run(self):
         return self.sort(self.seq)
-    
+
+# Parallel Merge Sort implementation 
 class ParallelMergeSort:
-    name = "Parallel Merge Sort"
-    complexity = "-"
+    complexity = "O(n)"
     parallel = True
 
     def __init__(self, seq, ps_n):
         self.seq = seq
         self.ps_n = ps_n
 
-    def parallel_sort(self, seq, ps_n):
-        N = len(seq)
+    def p(self, conn, seq, ps_n):
+        sorted_seq = self.sort(seq, ps_n=ps_n)
+        conn.send(sorted_seq)
+        conn.close()
+        
+    def sort(self, seq, ps_n):
+        if (len(seq) <= 1):
+            return seq
+        
+        # Spawn a child process for the left half
+        # Divide process budget: child gets half, parent keeps half
+        mid = len(seq) // 2
+        left = seq[:mid]
+        right = seq[mid:]
+        
+        child_ps_n = ps_n // 2
+        parent_ps_n = ps_n - child_ps_n
+        
+        parent_conn, child_conn = mp.Pipe()
+        process = mp.Process(target=self.p, args=(child_conn, left, child_ps_n))
+        process.start()
 
-        return seq
+        # Parent sorts right half with remaining process budget
+        right_sorted = self.sort(right, ps_n=parent_ps_n)
+
+        # Get sorted left from child
+        left_sorted = parent_conn.recv()
+        process.join()
+
+        return merge_lists(left_sorted, right_sorted)
 
     def run(self):
-        return self.parallel_sort(self.seq, self.ps_n)
-    
-# Unit testing
-if (__name__ == "__main__"):
-    from utils.utils import generate_sequence
-
-    seq = generate_sequence(N=8, max_value=8)
-    print(f"DEBUG: seq = {seq}")
-
-    sort = ParallelMergeSort(seq, 7)
-    print(f"DEBUG: solved seq = {sort.run()}")
+        return self.sort(self.seq, self.ps_n)

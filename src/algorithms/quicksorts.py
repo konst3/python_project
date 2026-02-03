@@ -6,7 +6,7 @@
 #   2. Parallel Quicksort
 
 class QuickSort:
-    complexity = "O(NlogN)"
+    complexity = "O(nlogn)"
     parallel = False
     
     def __init__(self, seq, ps_n=1):
@@ -32,4 +32,14 @@ class QuickSort:
         return self.sort(self.seq)
 
 class ParallelQuickSort:
-    pass
+    complexity = "O(n)"
+    parallel = True
+    
+    def __init__(self, seq, ps_n=1):
+        self.seq = seq
+
+    def sort(self, a):
+
+    
+    def run(self):
+        return self.sort(self.seq)

@@ -33,8 +33,6 @@ def generate_sequence(N, min_value=1, max_value=seq_limit):
 
 # Run the sort using the input of the combobox
 def run_sort(seq, algo, thr=1):
-    # TODO: Show algorithm complexity (self.complexity variable already on class)
-
     t.start()
     # print(f"DEBUG: start time: {t.t_start}")
     
@@ -45,7 +43,7 @@ def run_sort(seq, algo, thr=1):
 
     return (al, (t.get_time()/(10**6)))
 
-# DEBUG
+# Unit testing
 if (__name__  == "__main__"):
     print("DEBUG: Utils module test")
     print("DEBUG: Available algorithms:")
@@ -56,9 +54,12 @@ if (__name__  == "__main__"):
     print(f"DEBUG: Generated sequence: {seq}")
     print(sort.validate_sort(seq))
 
-    # result = run_sort(seq, "Quicksort")
     # result = run_sort(seq, "Bubble Sort")
-    result = run_sort(seq, "Parallel Bubble Sort/Odd-Even Transposition Sort", 5)
+    # result = run_sort(seq, "Parallel Bubble Sort/Odd-Even Transposition Sort", 5)
+    # result = run_sort(seq, "Merge Sort")
+    # result = run_sort(seq, "Parallel Merge Sort", 5)
+    # result = run_sort(seq, "Quicksort")
+    result = run_sort(seq, "Parallel Quicksort", 5)
     
     print(f"DEBUG: Time taken: {t.get_time()/(10**6)} ms") 
     
