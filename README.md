@@ -10,6 +10,7 @@ A comprehensive Python application demonstrating single-threaded and parallel so
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Reports](#reports)
 - [Project Structure](#project-structure)
 - [Algorithm Complexity](#algorithm-complexity)
 - [To-Do List](#to-do-list)
@@ -82,6 +83,11 @@ python3 src/main.py
      - Execution time in milliseconds
      - Number of processes used
 
+## Reports
+The requested reports can be found in the `reports/` directory:
+- [Project Report](reports/Project_Report.pdf): Detailed documentation of the project, design decisions, and implementation details.
+- [Panos Koutsoumanis Report](reports/Koutsoumanis_Personal_Report.pdf): Panos Koutsoumanis personal report.
+- [Konstantinos Papalamprou Report](reports/Papalamprou_Konstantinos_Personal_Report.pdf): Konstantinos Papalamprou personal report.
 
 ## Project Structure
 
