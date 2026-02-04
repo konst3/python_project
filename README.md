@@ -14,6 +14,7 @@ A comprehensive Python application demonstrating single-threaded and parallel so
 - [Algorithm Complexity](#algorithm-complexity)
 - [To-Do List](#to-do-list)
 - [Contributors](#contributors)
+- [License](#license)
 - [Resources](#resources)
 
 ## Features
@@ -148,6 +149,9 @@ src/
 - Make paper
 - Make pptx
 - Make personal description of contributions to the project
+
+## License
+This project is released into the public domain under The Unlicense. See the [LICENSE](LICENSE) file for more details.
 
 ## Resources
 
