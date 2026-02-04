@@ -41,6 +41,7 @@ A comprehensive Python application demonstrating single-threaded and parallel so
 
 - Python 3.7+
 - tkinter (usually included with Python)
+- multiprocessing (standard library)
 
 ## Installation
 
