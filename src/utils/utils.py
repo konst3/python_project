@@ -5,16 +5,16 @@
 import random
 import utils.timer as timer
 import utils.sort as sort
-from algorithms import bubble_sorts, merge_sorts, quicksorts, odd_even_merge_sort, bitonic_merge_sort, odd_even_transposition_sort
+from algorithms import bubble_sorts, merge_sorts, quicksorts #, odd_even_merge_sort, bitonic_merge_sort
 
-VERSION = "1.1"
+VERSION = "1.2"
 t = timer.Timer()
 
 algoList = {
     "Bubble Sort": bubble_sorts.BubbleSort,
-    "Parallel Bubble Sort v1": bubble_sorts.ParallelBubbleSort,
-    "Odd-Even Transposition Sort v1": odd_even_transposition_sort.OddEvenTranspositionSort,
-    #"Parallel Bubble sort v2 (Odd-Even Transposition Sort)": bubble_sorts.OddEvenTranspositionSort,
+    "Parallel Bubble Sort": bubble_sorts.ParallelBubbleSort, # v1
+    "Odd-Even Transposition Sort": bubble_sorts.OddEvenTranspositionSort, # v1
+    #"Odd-Even Transposition Sort (Parallel)": bubble_sorts.ParallelOddEvenTranspositionSort, # v2
     "Merge Sort": merge_sorts.MergeSort,
     "Parallel Merge Sort": merge_sorts.ParallelMergeSort,
     "Quicksort": quicksorts.QuickSort,

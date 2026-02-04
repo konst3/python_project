@@ -73,6 +73,7 @@ class ParallelMergeSort(MergeSort):
         return self.parallel_sort(self.seq, self.ps_n)    
 
 
+# NOTE: Old implementation with Pipes
     #def __init__(self, seq, ps_n):
     #    self.seq = seq
     #    self.ps_n = ps_n

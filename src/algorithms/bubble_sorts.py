@@ -3,7 +3,9 @@
 #
 # Implementation of
 #   1. Sequencial Bubble Sort Algorithm
-#   2. Parallel Bubble Sort Algorithm/Odd-Even Transposition Sort Algorithm
+#   2. Parallel Bubble Sort Algorithm
+#   3. Odd-Even Transposition Sort Algorithm
+#   4. Parallel Odd-Even Transposition Sort Algorithm
 
 from utils.sort import merge_lists
 
@@ -29,8 +31,6 @@ class BubbleSort:
                     tmp = a[j]
                     a[j] = a[k]
                     a[k] = tmp
-
-                # a[j], a[j+1], _ = compare_and_exchange(a[j], a[j+1])
                 
         return a
 
@@ -46,11 +46,6 @@ class ParallelBubbleSort(BubbleSort):
     def __init__(self, seq, ps_n):
         self.seq = seq
         self.ps_n = ps_n
-
-    def __str__(self):
-        return f"Algorithm {ParallelBubbleSort.name}, Complexity: {ParallelBubbleSort.complexity}"
-
-
 
     def parallel_sort(self, a, p_ps):
         # Devide the sequence into chunks
@@ -78,60 +73,60 @@ class ParallelBubbleSort(BubbleSort):
     def run(self):
         return self.parallel_sort(self.seq, self.ps_n)    
 
-
-# Implementation of Odd Even Transposition Sort
+# Implementation of Odd-Even Transposition Sort
 class OddEvenTranspositionSort:
-    # complexity = "O(n)"
-    # parallel = True
+    name = "Odd Even Transposition Sort"
+    complexity = "O(n^2)"
+    parallel = False
+    def __init__(self, seq, ps_n=1):
+        self.seq = seq
+        self.ps_n = ps_n
 
-    # def __init__(self, seq, ps_n=1):
-    #     self.seq = seq
-    #     self.ps_n = ps_n
 
-    # def sort(self, a):
-    #     self.N = len(a)
-        
-    #     # Use multiprocessing with a manager for shared list
-    #     with mp.Manager() as manager:
-    #         shared_list = manager.list(a)
-    #         sorted_flag = manager.Value("b", False)
-    #         phase = 0
+        if (ps_n != 1): print(f"DEBUG: Odd-Even Transposition Sort is not parallel, so it will run on 1 thread instead of {ps_n}")
 
-    #         # print(f"DEBUG: Phase {phase} - Active children BEFORE pool: {len(mp.active_children())}")
+    def __str__(self):
+        return f"Algorithm {self.name}, Complexity: {self.complexity}"
 
-    #         with mp.Pool(processes=self.ps_n) as pool: # NOTE: Add the pool outside of the loop to avoid overhead
-    #             while not sorted_flag.value:
-    #                 # print(f"DEBUG: Phase {phase} - INSIDE even pool: {len(mp.active_children())} processes")
-    #                 sorted_flag.value = True
+    def sort(self, a):
+        N = len(a)
 
-    #                 # Even phase
-    #                 if (phase % 2 == 0):  
-    #                     args = [(shared_list, i, i + 1, sorted_flag) for i in range(0, self.N - 1, 2)]
-    #                     pool.starmap(self.compare_and_exchange, args) # Map the args (NOTE: starmap takes the arguments) to the processes
-    #                     # print(phase, list(args[0][0]))
-        
-    #                 # Odd phase
-    #                 else:
-    #                     args = [(shared_list, i, i + 1, sorted_flag) for i in range(1, self.N - 1, 2)]
-    #                     pool.starmap(self.compare_and_exchange, args) # Execute comparisons in parallel, limited by pool size
-    #                     # print(phase, list(args[0][0]))
+        i = 0 # TODO: Remove, only for debug
 
-    #                 phase += 1
+        while True:
+            for i in range(N//2):
+                exchanged_values = False
 
-    #         # print(f"DEBUG: Phase {phase} - Active children AFTER pool: {len(mp.active_children())}")
-            
-    #         return list(shared_list)
+                # Even phase
+                for j in range(0, N, 2):
+                    k = j + 1
 
-    # def compare_and_exchange(self, shared_list, i, j, sorted_flag):
-    #     if shared_list[i] > shared_list[j]:
-    #         tmp = shared_list[i]
-    #         shared_list[i] = shared_list[j]
-    #         shared_list[j] = tmp
-    #         sorted_flag.value = False
+                    if (a[j] > a[k]):
+                        tmp = a[j]
+                        a[j] = a[k]
+                        a[k] = tmp
+                        exchanged_values = True
 
-    # def run(self):
-    #     return self.sort(self.seq)
-    
+                # Odd phase
+                for j in range(1, N-1, 2):
+                    k = j + 1
+
+                    if (a[j] > a[k]):
+                        tmp = a[j]
+                        a[j] = a[k]
+                        a[k] = tmp
+                        exchanged_values = True
+
+                if (not exchanged_values): break # Finish sort when there was no value exchange made
+
+            return a
+
+
+    def run(self):
+        return self.sort(self.seq)
+
+# Implementation of Parallel Odd Even Transposition Sort
+class ParallelOddEvenTranspositionSort:
     complexity = "O(n)"
     parallel = True
 
@@ -150,8 +145,6 @@ class OddEvenTranspositionSort:
                     a[j] = a[k]
                     a[k] = tmp
 
-                # a[j], a[j+1], _ = compare_and_exchange(a[j], a[j+1])
-                
         return a
     
     def parallel_sort(self, a, p_ps):
