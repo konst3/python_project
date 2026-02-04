@@ -38,7 +38,7 @@ class MergeSort:
         return self.sort(self.seq)
 
 # Parallel Merge Sort implementation 
-class ParallelMergeSort:
+class ParallelMergeSort(MergeSort):
     complexity = "O(n)"
     parallel = True
 
@@ -46,36 +46,67 @@ class ParallelMergeSort:
         self.seq = seq
         self.ps_n = ps_n
 
-    def p(self, conn, seq, ps_n):
-        sorted_seq = self.sort(seq, ps_n=ps_n)
-        conn.send(sorted_seq)
-        conn.close()
-        
-    def sort(self, seq, ps_n):
-        if (len(seq) <= 1):
-            return seq
-        
-        # Spawn a child process for the left half
-        # Divide process budget: child gets half, parent keeps half
-        mid = len(seq) // 2
-        left = seq[:mid]
-        right = seq[mid:]
-        
-        child_ps_n = ps_n // 2
-        parent_ps_n = ps_n - child_ps_n
-        
-        parent_conn, child_conn = mp.Pipe()
-        process = mp.Process(target=self.p, args=(child_conn, left, child_ps_n))
-        process.start()
+    def parallel_sort(self, a, p_ps):
+        # Devide the sequence into chunks
+        self.chunks = []
 
-        # Parent sorts right half with remaining process budget
-        right_sorted = self.sort(right, ps_n=parent_ps_n)
+        # print("Generating chunks... ")
 
-        # Get sorted left from child
-        left_sorted = parent_conn.recv()
-        process.join()
+        stp = max(1, round(len(a)/p_ps)) # step for seperating chunks
 
-        return merge_lists(left_sorted, right_sorted)
+        for i in range(0, len(a), stp):
+            self.chunks.append(a[i:i+stp])
+        # print(f"Generated: {len(self.chunks)}")
+
+        # Make a pool of processes to sort each chunk
+        with mp.Pool(processes=p_ps) as pool:
+            self.sorted = pool.map(self.sort, self.chunks)
+
+        # Merge the chunks
+        while (len(self.sorted)-1 > 0):
+            self.sorted[0] = merge_lists(self.sorted[0], self.sorted[1])
+            self.sorted.pop(1)
+
+        return self.sorted[0]
 
     def run(self):
-        return self.sort(self.seq, self.ps_n)
+        return self.parallel_sort(self.seq, self.ps_n)    
+
+
+    #def __init__(self, seq, ps_n):
+    #    self.seq = seq
+    #    self.ps_n = ps_n
+
+    #def p(self, conn, seq, ps_n):
+    #    sorted_seq = self.sort(seq, ps_n=ps_n)
+    #    conn.send(sorted_seq)
+    #    conn.close()
+        
+    #def sort(self, seq, ps_n):
+    #    if (len(seq) <= 1):
+    #        return seq
+        
+    #    # Spawn a child process for the left half
+    #    # Divide process budget: child gets half, parent keeps half
+    #    mid = len(seq) // 2
+    #    left = seq[:mid]
+    #    right = seq[mid:]
+        
+    #    child_ps_n = ps_n // 2
+    #    parent_ps_n = ps_n - child_ps_n
+        
+    #    parent_conn, child_conn = mp.Pipe()
+    #    process = mp.Process(target=self.p, args=(child_conn, left, child_ps_n))
+    #    process.start()
+
+    #    # Parent sorts right half with remaining process budget
+    #    right_sorted = self.sort(right, ps_n=parent_ps_n)
+
+    #    # Get sorted left from child
+    #    left_sorted = parent_conn.recv()
+    #    process.join()
+
+    #    return merge_lists(left_sorted, right_sorted)
+
+    #def run(self):
+    #    return self.sort(self.seq, self.ps_n)
