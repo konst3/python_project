@@ -48,7 +48,7 @@ A comprehensive Python application demonstrating single-threaded and parallel so
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/konst3/python_project
 cd python_project
 ```
 
