@@ -37,6 +37,48 @@ class BubbleSort:
     def run(self):
         return self.sort(self.seq)
 
+# Parallel Bubble Sort
+class ParallelBubbleSort(BubbleSort):
+    name = "Parallel Bubble Sort"
+    complexity = "O(n)"
+    parallel = True
+    
+    def __init__(self, seq, ps_n):
+        self.seq = seq
+        self.ps_n = ps_n
+
+    def __str__(self):
+        return f"Algorithm {ParallelBubbleSort.name}, Complexity: {ParallelBubbleSort.complexity}"
+
+
+
+    def parallel_sort(self, a, p_ps):
+        # Devide the sequence into chunks
+        self.chunks = []
+
+        # print("Generating chunks... ")
+
+        stp = max(1, round(len(a)/p_ps)) # step for seperating chunks
+
+        for i in range(0, len(a), stp):
+            self.chunks.append(a[i:i+stp])
+        # print(f"Generated: {len(self.chunks)}")
+
+        # Make a pool of processes to sort each chunk
+        with mp.Pool(processes=p_ps) as pool:
+            self.sorted = pool.map(self.sort, self.chunks)
+
+        # Merge the chunks
+        while (len(self.sorted)-1 > 0):
+            self.sorted[0] = merge_lists(self.sorted[0], self.sorted[1])
+            self.sorted.pop(1)
+
+        return self.sorted[0]
+
+    def run(self):
+        return self.parallel_sort(self.seq, self.ps_n)    
+
+
 # Implementation of Odd Even Transposition Sort
 class OddEvenTranspositionSort:
     complexity = "O(n)"

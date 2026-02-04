@@ -5,22 +5,24 @@
 import random
 import utils.timer as timer
 import utils.sort as sort
-from algorithms import bubble_sorts, merge_sorts, quicksorts, odd_even_merge_sort, bitonic_merge_sort
+from algorithms import bubble_sorts, merge_sorts, quicksorts, odd_even_merge_sort, bitonic_merge_sort, odd_even_transposition_sort
 
 VERSION = "1.0"
 t = timer.Timer()
 
 algoList = {
     "Bubble Sort": bubble_sorts.BubbleSort,
-    "Parallel Bubble Sort/Odd-Even Transposition Sort": bubble_sorts.OddEvenTranspositionSort,
+    "Parallel Bubble Sort v1": bubble_sorts.ParallelBubbleSort,
+    "Odd-Even Transposition Sort v1": odd_even_transposition_sort.OddEvenTranspositionSort,
+    #"Parallel Bubble sort v2 (Odd-Even Transposition Sort)": bubble_sorts.OddEvenTranspositionSort,
     "Merge Sort": merge_sorts.MergeSort,
     "Parallel Merge Sort": merge_sorts.ParallelMergeSort,
     "Quicksort": quicksorts.QuickSort,
     "Lomuto Quicksort": quicksorts.LomutoQuickSort,
     "Hoare Quicksort": quicksorts.HoareQuickSort,
     "Parallel Quicksort": quicksorts.ParallelQuickSort,
-    "Odd-Even Merge Sort (Parallel)": odd_even_merge_sort.OddEvenMergeSort,
-    "Bitonic Mergesort (Parallel)": bitonic_merge_sort.BitonicMergeSort
+    #"Odd-Even Merge Sort (Parallel)": odd_even_merge_sort.OddEvenMergeSort,
+    #"Bitonic Mergesort (Parallel)": bitonic_merge_sort.BitonicMergeSort
 }
 
 seq = [1, 2] # Global list for the sequence
