@@ -164,3 +164,4 @@ https://www.dcc.fc.up.pt/~ricroc/aulas/1516/cp/apontamentos/slides_sorting.pdf
 ### UI & GUI
 - ttk.Combobox: https://www.geeksforgeeks.org/python/dropdown-menus-tkinter/
 - tk.Spinbox.bind() --> bind a function on an event of the widget
+- https://stackoverflow.com/questions/74040200/disable-mouse-press-on-tkinter-text-widget --> Scroll text click bug fix

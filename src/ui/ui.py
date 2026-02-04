@@ -21,7 +21,7 @@ class UI:
         # Generate the sequence
         self.f1 = tk.Frame(self.root)
         self.f1.pack()
-        self.l1 = tk.Label(self.f1, text=f"Generate the Sequence\nEnter the size of the sequence which should belong to [0, {utils.seq_limit}]")
+        self.l1 = tk.Label(self.f1, text=f"Generate the Sequence\nEnter size of the sequence between 0 and {utils.seq_limit}")
         self.l1.pack()
         self.f2 = tk.Frame(self.f1)
         self.f2.pack()
@@ -81,7 +81,7 @@ class UI:
     # Helper function for printing to the UI "console"
     def printUI(self, text):
        self.tb.config(state="normal") # Make the console edible for an automated insert of data
-       self.tb.insert(tk.INSERT, text+"\n")
+       self.tb.insert(tk.END, text+"\n") # tk.INSERT uses coursor position but tk.END always appends to the end of the text box
        self.tb.config(state="disabled") # Make the console unedible for the user
        self.tb.see(tk.END) # Always scroll to the bottom line
 
