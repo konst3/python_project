@@ -39,7 +39,6 @@ class BubbleSort:
 
 # Parallel Bubble Sort
 class ParallelBubbleSort(BubbleSort):
-    name = "Parallel Bubble Sort"
     complexity = "O(n)"
     parallel = True
     
